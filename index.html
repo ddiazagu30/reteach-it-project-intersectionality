@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intersectionality Reteach it Project</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A; /* Slate 900 */
+            color: #E2E8F0; /* Slate 200 */
+            scroll-behavior: smooth;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+        ::-webkit-scrollbar-track { background: #1E293B; }
+        
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(30px);
+        }
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Interactive Element Styles */
+        .interactive-card {
+            transition: all 0.3s ease;
+        }
+        .interactive-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .topic-card {
+            background-color: rgba(30, 41, 59, 0.7); /* Slate 800 with opacity */
+            border: 1px solid #334155;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-sm shadow-xl border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">
+                Reteach It Project
+            </h1>
+            <nav class="hidden md:block">
+                <a href="#framework" class="text-sm font-medium hover:text-indigo-400 transition mr-6">Intersectionality</a>
+                <a href="#chapter-deep-dive" class="text-sm font-medium hover:text-indigo-400 transition mr-6">Deep Dive</a>
+                <a href="#reflection" class="text-sm font-medium hover:text-indigo-400 transition mr-6">My Experience</a>
+                <a href="#quiz-section" class="text-sm font-medium hover:text-indigo-400 transition mr-6">Quiz</a>
+                <a href="#bibliography" class="text-sm font-medium hover:text-indigo-400 transition">References</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+
+        <!-- 1. Introduction -->
+        <section id="intro" class="fade-in text-center pt-8">
+            <h2 class="text-5xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
+                Race, Class, Gender, & Sexuality
+            </h2>
+            <p class="text-xl text-indigo-200 max-w-2xl mx-auto mb-8">
+                An interactive exploration of how our identities overlap to create unique modes of discrimination and privilege.
+            </p>
+            <div class="bg-indigo-900/30 p-6 rounded-lg border border-indigo-500/30 inline-block text-left max-w-3xl">
+                <p class="text-slate-300">
+                    "Intersectionality is not just about adding up identities; it's about understanding how they construct one another."
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. The Conceptual Framework -->
+        <section id="framework" class="fade-in">
+            <div class="flex flex-col md:flex-row gap-10 items-start">
+                <div class="flex-1">
+                    <h3 class="text-3xl font-bold text-white mb-6 border-l-4 border-indigo-500 pl-4">
+                        What is Intersectionality?
+                    </h3>
+                    <p class="mb-4 leading-relaxed text-slate-300">
+                        It is not a math problem (Race + Gender = Experience). Rather, <strong>intersectionality</strong> is the understanding that social identities (race, class, gender, sexuality) are inextricably linked. 
+                    </p>
+                    <p class="leading-relaxed text-slate-300 mb-6">
+                        Weber (1998) argues that we cannot understand race, class, gender, and sexuality in isolation. They are <strong>simultaneously operating systems</strong> of oppression and privilege. Instead of asking "Which factor is more important?", we must ask "How do these factors rely on each other to maintain social hierarchies?" This web of connection forms the basis of our social reality.
+
+                    </p>
+                    
+                    <!-- POLL INTERACTION -->
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 mt-8 interactive-card">
+                        <h4 class="text-lg font-semibold text-indigo-300 mb-4">📢 Poll</h4>
+                        <p class="text-sm text-slate-400 mb-4">Which aspect of your identity do you feel dictates how strangers treat you the most?</p>
+                        <div class="space-y-2" id="poll-1">
+                            <button onclick="vote(this, 'poll-1-result')" class="w-full text-left px-4 py-3 bg-slate-700 hover:bg-slate-600 rounded transition flex justify-between group">
+                                <span>Race/Ethnicity</span>
+                                <span class="hidden group-hover:inline text-indigo-300">Vote</span>
+                            </button>
+                            <button onclick="vote(this, 'poll-1-result')" class="w-full text-left px-4 py-3 bg-slate-700 hover:bg-slate-600 rounded transition flex justify-between group">
+                                <span>Gender Presentation</span>
+                                <span class="hidden group-hover:inline text-indigo-300">Vote</span>
+                            </button>
+                            <button onclick="vote(this, 'poll-1-result')" class="w-full text-left px-4 py-3 bg-slate-700 hover:bg-slate-600 rounded transition flex justify-between group">
+                                <span>Age / Visible Ability</span>
+                                <span class="hidden group-hover:inline text-indigo-300">Vote</span>
+                            </button>
+                        </div>
+                        <div id="poll-1-result" class="hidden mt-4 text-center text-green-400 font-medium bg-green-900/20 py-2 rounded">
+                            Thanks for Sharing! This poll isn't recorded.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Chapter 4 Deep Dive (Grid Layout) -->
+        <section id="chapter-deep-dive" class="fade-in">
+             <h3 class="text-3xl font-bold text-white mb-8 border-l-4 border-pink-500 pl-4">
+                Critical Intersections: Deep Dive
+            </h3>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Card 1: Class & Residence -->
+                <div class="topic-card hover:bg-slate-800 transition">
+                    <h4 class="text-xl font-bold text-indigo-300 mb-2">Gender, Class, & Residence</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Economic class shapes how gender is "done." Wealthier families often have the resources to enact the "traditional" Breadwinner/Housewife model, whereas working-class families often require dual incomes, disrupting traditional gender roles out of necessity. Residence also plays a role; urban environments may offer more anonymity for gender non-conformity compared to tight-knit rural communities.
+                    </p>
+                </div>
+
+                <!-- Card 2: Race -->
+                <div class="topic-card hover:bg-slate-800 transition">
+                    <h4 class="text-xl font-bold text-indigo-300 mb-2">Gender & Race</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Race fundamentally alters gender expectations. For example, Black men may face the hyper-masculinized "aggressive" stereotype, while Asian men are often desexualized or feminized in Western media. Similarly, Black women may not be afforded the same "fragility" or protection associated with white femininity, often dubbed the "Strong Black Woman" schema which can deny them care and support.
+                    </p>
+                </div>
+
+                <!-- Card 3: Sexual Orientation -->
+                <div class="topic-card hover:bg-slate-800 transition">
+                    <h4 class="text-xl font-bold text-indigo-300 mb-2">Sexual Orientation & Others</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Sexual orientation intersects heavily with gender norms. For instance, a gay man may be seen as "failing" at masculinity. This intersects with race/class; in some communities, coming out risks not just social standing but family economic safety nets, leading to phenomena like the "Down Low" in specific subcultures where racial solidarity is prioritized over sexual identity.
+                    </p>
+                </div>
+
+                <!-- Card 4: Immigration -->
+                <div class="topic-card hover:bg-slate-800 transition">
+                    <h4 class="text-xl font-bold text-indigo-300 mb-2">Immigration Status</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Immigration status creates a power imbalance often gendered. Women who depend on a spouse for legal visas (e.g., H4 visas) may be trapped in abusive dynamics, unable to leave without facing deportation. Men may face "downward mobility," unable to work in their field, challenging their traditional role as providers and impacting their gender performance.
+                    </p>
+                </div>
+
+                <!-- Card 5: Disability -->
+                <div class="topic-card hover:bg-slate-800 transition">
+                    <h4 class="text-xl font-bold text-indigo-300 mb-2">Gendered Disability</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Disability is often viewed through a gendered lens. Masculinity is often equated with physical strength and autonomy; thus, men with disabilities may feel a sharper loss of "manhood." Women with disabilities are often infantilized, assumed to be non-sexual, or unfit for motherhood, denying them traditional feminine milestones.
+                    </p>
+                </div>
+
+                <!-- Card 6: Age & Attractiveness -->
+                <div class="topic-card hover:bg-slate-800 transition">
+                    <h4 class="text-xl font-bold text-indigo-300 mb-2">Age & Attractiveness</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        The "double standard" of aging is stark. Men often gain status as they age being refered to as  a "silver fox," or being percieved as distinguished, while women are judged harshly for losing youth or "letting herself go". Attractiveness is a form of currency that women are taught to maintain, while men's worth is often tied more to economic output than physical beauty.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Analyzing quote -->
+            <div class="mt-8 bg-slate-800 p-6 rounded-xl border-l-4 border-yellow-500">
+                <h4 class="text-lg font-bold text-white mb-2">Analyzing quote</h4>
+                <p class="text-indigo-100 italic text-lg">
+                    "Ever since I’ve been in a wheelchair, I’ve stopped getting catcalled."
+                </p>
+                <div class="mt-4 text-sm text-slate-300">
+                    <strong class="text-white">This quote is given in M2 chapter 4 and reveals how disability intersects with gender. Catcalling is a display of male dominance over women perceived as sexually available objects, though when a woman is disabled she is often desexualized by society. The "male gaze" no longer views her as a target for sexual harassment because she is no longer viewed as a sexual being, replacing one form of oppression and harassment with another like invisibility or infantilization.
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Personal Reflection -->
+        <section id="reflection" class="fade-in pt-16 border-t border-slate-800/50">
+             <h3 class="text-3xl font-bold text-white mb-8 border-l-4 border-purple-500 pl-4">
+                My Intersectionality Story
+            </h3>
+            
+            <div class="max-w-3xl mx-auto space-y-8 text-lg leading-relaxed text-slate-300 bg-slate-800/50 p-8 rounded-xl border border-slate-700/50">
+                <p>
+                    <span class="text-purple-300 font-semibold">[My Intersection]</span><br>
+                    As being someone born to two immigrant parents from Mexico, I am brown, thus I’ve always had a struggle with my identity in that sense. Official documentation often needs me to specify a race, but I never could, so I would put “other”. My ethnicity is latino, I know that much, but because of my education and how I grew up, I don’t match stereotypes, the only distinguishing feature is my skin color. Lastly, I identify as a straight male. Most would say the world caters to me, but it's not all rainbows, and I face my own struggles as well.
+
+                </p>
+                <p>
+                    <span class="text-purple-300 font-semibold">[Connection to Class]</span><br>
+                    Statistically some of my mentioned aspects of who I am would say that I am less fluent in English, more likely to live in poverty, and have lower educational attainment than other races/ethnicities. I am fluent in English and got a good education, but did live in poverty. The common situations of people with similar identities show how things like race, age and gender, all affect people's socio-economic position in this world, which all are tied to historical systematic perception.
+                </p>
+                <p>
+                    <span class="text-purple-300 font-semibold">[Conclusion]</span><br>
+                    Every facet that makes us who we are subsist, intertwined and entangled with one another. Though they may cause struggle and pain, one must not forget that it is the intersectionality that stands us apart in uniqueness or can bring us together.
+                </p>
+            </div>
+        </section>
+
+        <!-- 5. Interactive Quiz (Separate Section with Carousel) -->
+        <section id="quiz-section" class="fade-in pt-16">
+            <h3 class="text-3xl font-bold text-white mb-8 border-l-4 border-pink-500 pl-4 text-center md:text-left">
+                Knowledge Check
+            </h3>
+            
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-2xl border border-slate-700 shadow-xl interactive-card relative">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center">
+                            <span class="bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wide mr-3">Quiz</span>
+                            <span id="question-tracker" class="text-slate-400 text-sm font-medium">Question 1 of 3</span>
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-container">
+                        <!-- Questions will be injected here by JS -->
+                        <div class="mb-6">
+                            <h4 id="question-text" class="text-xl font-bold text-white leading-tight">
+                                <!-- Question text loads here -->
+                            </h4>
+                        </div>
+
+                        <div id="options-container" class="space-y-3">
+                            <!-- Options load here -->
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-feedback" class="hidden mt-6 p-4 rounded-lg bg-slate-800 border border-slate-600">
+                        <!-- Feedback loads here -->
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="flex justify-between mt-8 pt-6 border-t border-slate-700/50">
+                        <button id="prev-btn" onclick="prevQuestion()" class="text-slate-400 hover:text-white flex items-center transition disabled:opacity-30 disabled:cursor-not-allowed">
+                            ← Previous
+                        </button>
+                        <button id="next-btn" onclick="nextQuestion()" class="text-slate-400 hover:text-white flex items-center transition disabled:opacity-30 disabled:cursor-not-allowed">
+                            Next →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 6. Bibliography -->
+        <section id="bibliography" class="fade-in pt-24 border-t border-slate-800">
+            <h3 class="text-2xl font-bold text-slate-400 mb-6">References</h3>
+            <ul class="space-y-4 text-slate-500 text-sm font-light">
+                <li class="pl-4 border-l-2 border-slate-700 hover:border-indigo-500 transition">
+                    Bonstead-Bruns, M. (2002). Understanding Race, Class, Gender, and Sexuality. <em>Teaching Sociology</em>, 30(2), 260.
+                </li>
+                <li class="pl-4 border-l-2 border-slate-700 hover:border-indigo-500 transition">
+                    Reeser, L. C. (2008). The social construction of difference and inequality: Race, class, gender, and sexuality by Tracy E. Ore. <em>Asian Women</em>, 24(4), 89–95.
+                </li>
+                <li class="pl-4 border-l-2 border-slate-700 hover:border-indigo-500 transition">
+                    Wade, L., & Ferree, M. M. (2023). <em>Gender: Ideas, interactions, institutions</em> (3rd ed.). W.W. Norton & Company, Inc.
+                </li>
+                <li class="pl-4 border-l-2 border-slate-700 hover:border-indigo-500 transition">
+                    Weber, L. (1998). A Conceptual Framework for Understanding Race, Class, Gender, and Sexuality. <em>Psychology of Women Quarterly</em>, 22(1), 13–32.
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="mt-20 py-10 text-center bg-slate-900 border-t border-slate-800">
+        <p class="text-slate-600">&copy; 2025 Danny Diaz Aguirre</p>
+    </footer>
+
+    <script>
+        // Scroll Animation
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Initialize Quiz
+            renderQuestion();
+        });
+
+        // Poll Logic
+        function vote(btn, resultId) {
+            const parent = btn.parentElement;
+            const buttons = parent.querySelectorAll('button');
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.add('opacity-50', 'cursor-not-allowed');
+            });
+            btn.classList.remove('bg-slate-700');
+            btn.classList.add('bg-indigo-600', 'text-white');
+            document.getElementById(resultId).classList.remove('hidden');
+        }
+
+        // --- Multi-Step Quiz Logic ---
+        
+        const questions = [
+            {
+                text: "Which concept describes the phenomenon where men are viewed as 'distinguished' as they age, while women are viewed as 'declining'?",
+                options: [
+                    "The Glass Ceiling",
+                    "The Double Standard of Aging",
+                    "Heteronormativity"
+                ],
+                correctIndex: 1,
+                feedback: "Correct! The 'double standard of aging' suggests men gain status while women lose social capital as they age."
+            },
+            {
+                text: "According to Weber (1998), why is it problematic to study race or gender in isolation?",
+                options: [
+                    "Because there isn't enough data on them separately.",
+                    "Because class is the only factor that truly matters.",
+                    "Because they are interdependent systems that define one another."
+                ],
+                correctIndex: 2,
+                feedback: "Exactly. Weber emphasizes that these systems are interconnected and cannot be fully understood individually."
+            },
+            {
+                text: "What concept does the quote 'Ever since I’ve been in a wheelchair, I’ve stopped getting catcalled' illustrate?",
+                options: [
+                    "How disability and gender intersect chaning how society views/treats a person.",
+                    "That street harassment is disappearing.",
+                    "That economic class protects against harassment."
+                ],
+                correctIndex: 0,
+                feedback: "Correct. The quote highlights how the 'male gaze' often ignores disabled female bodies, replacing harassment with desexualization."
+            }
+        ];
+
+        let currentQIndex = 0;
+
+        function renderQuestion() {
+            const q = questions[currentQIndex];
+            
+            // Update Tracker
+            document.getElementById('question-tracker').innerText = `Question ${currentQIndex + 1} of ${questions.length}`;
+            
+            // Update Text
+            document.getElementById('question-text').innerText = q.text;
+            
+            // Update Options
+            const optionsHTML = q.options.map((opt, index) => 
+                `<button onclick="checkQuizAnswer(this, ${index})" class="w-full text-left p-4 bg-slate-700/50 hover:bg-slate-700 border border-slate-600 rounded-lg transition hover:border-purple-400">
+                    ${opt}
+                </button>`
+            ).join('');
+            document.getElementById('options-container').innerHTML = optionsHTML;
+            
+            // Reset Feedback & Buttons
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            
+            // Update Nav Buttons
+            document.getElementById('prev-btn').disabled = (currentQIndex === 0);
+            document.getElementById('next-btn').disabled = (currentQIndex === questions.length - 1);
+        }
+
+        function checkQuizAnswer(btn, selectedIndex) {
+            const q = questions[currentQIndex];
+            const isCorrect = (selectedIndex === q.correctIndex);
+            const feedbackEl = document.getElementById('quiz-feedback');
+            const parent = document.getElementById('options-container');
+
+            // Reset styles
+            parent.querySelectorAll('button').forEach(b => {
+                b.classList.remove('ring-2', 'ring-green-500', 'ring-red-500', 'bg-red-900/20', 'bg-green-900/20');
+            });
+
+            feedbackEl.classList.remove('hidden');
+
+            if (isCorrect) {
+                feedbackEl.innerHTML = `<span class="text-green-400 font-bold">✓ Correct!</span> <span class="text-slate-300">${q.feedback}</span>`;
+                btn.classList.add('ring-2', 'ring-green-500', 'bg-green-900/20');
+            } else {
+                feedbackEl.innerHTML = `<span class="text-red-400 font-bold">✗ Incorrect.</span> <span class="text-slate-300">Try again!</span>`;
+                btn.classList.add('ring-2', 'ring-red-500', 'bg-red-900/20');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQIndex < questions.length - 1) {
+                currentQIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQIndex > 0) {
+                currentQIndex--;
+                renderQuestion();
+            }
+        }
+    </script>
+</body>
+</html>
